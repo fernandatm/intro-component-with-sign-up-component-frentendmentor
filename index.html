@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Splitter</title>
+    <link rel="shortcut icon" href="images/favicon-32x32.png" type="image/x-icon">
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <img src="images/logo.svg" alt="Logo Splitter">
+    </header>
+    <main>
+        <div class="container">
+            <div class="container-left">
+                <div class="form">
+                    <h1>Bill</h1>
+                    <label for="input-bill" class="input-label">
+                        <input class="input-entry" type="text" id="input-bill" placeholder="0">
+                        <span><img src="images/icon-dollar.svg" alt="Icon dollar"></span>
+                    </label>
+                </div>
+                <div class="form">
+                    <h1>Select Tip %</h1>
+                    <div class="tip-inputs">
+                        <input onclick="pegarValor(0.05)" class="input-tip" type="button" value="5%">
+                        <input onclick="pegarValor(0.1)" class="input-tip" type="button" value="10%">
+                        <input onclick="pegarValor(0.15)" class="input-tip" type="button" value="15%">
+                        <input onclick="pegarValor(0.25)" class="input-tip" type="button" value="25%">
+                        <input onclick="pegarValor(0.5)" class="input-tip" type="button" value="50%">
+                        <input onblur="valorCustom()" class="input-tip" id="input-custom" type="text"
+                            placeholder="Custom" >
+                    </div>
+                </div>
+                <div class="form">
+                    <h1>Number of people</h1>
+                    <label for="input-people" class="input-label">
+                        <input onblur="mostrarValor()" class="input-entry" type="text" placeholder="0"
+                            id="input-people">
+                        <span for="#input-people"><img src="images/icon-person.svg" alt="Icon Person"></span>
+                        <p class="errorMessage" id="errorMessage">Can't be zero</p>
+                    </label>
+                </div>
+            </div>
+            <div class="container-right">
+                <div class="results">
+                    <div class="tip-amount">
+                        <div class="tip-text">
+                            <h2 class="results-title">Tip Amount</h2>
+                            <p class="results-subtitle">/ person</p>
+                        </div>
+                        <p class="tip-result" id="tip-result">$0.00</p>
+                    </div>
+                    <div class="total-pay">
+                        <div class="total-text">
+                            <h2 class="results-title">Total</h2>
+                            <p class="results-subtitle">/ person</p>
+                        </div>
+                        <p class="total-result" id="total-result">$0.00</p>
+                    </div>
+                </div>
+                <button onclick="reset()" id="reset-button">Reset</button>
+            </div>
+        </div>
+    </main>
+    <script>
+        let tip = 0;
+        function pegarValor(num) {
+            tip = parseFloat(num);
+        }
+
+        function valorCustom() {
+            var custom = parseFloat(document.getElementById('input-custom').value);
+            tip = custom / 100;
+        }
+        
+        function mostrarValor() {
+            const bill = parseFloat(document.getElementById('input-bill').value);
+            const people = parseFloat(document.getElementById('input-people').value);
+            const tipAmount = bill * tip;
+            const tipResult = tipAmount / people;
+            const totalResult = (bill + tipAmount) / people;
+            const inputPeople = document.getElementById('input-people');
+            const erro = document.getElementById('errorMessage');
+            if (isNaN(people) || people == 0) {
+                erro.style.visibility = "visible";
+                inputPeople.style.border = "2px solid rgb(232, 11, 11)"
+            } else {
+                document.getElementById('tip-result').innerHTML = ('$' + tipResult.toFixed(2));
+                document.getElementById('total-result').innerHTML = ('$' + totalResult.toFixed(2));
+                erro.style.visibility = "hidden";
+                inputPeople.style.border = "none"
+            }
+            if(isNaN(totalResult)) {
+                document.getElementById('total-result').innerHTML = "$0.00";
+                document.getElementById('tip-result').innerHTML = "$0.00";
+            }
+        }
+
+        function reset() {
+            document.getElementById('input-bill').value = '';
+            document.getElementById('input-people').value = '';
+            document.getElementById('input-custom').value = '';
+            document.getElementById('errorMessage').style.visibility = "hidden";
+            document.getElementById('input-people').style.border = "none";
+            document.getElementById('tip-result').innerHTML = '$0.00';
+            document.getElementById('total-result').innerHTML = '$0.00';
+        }
+
+    </script>
+</body>
+
+</html>

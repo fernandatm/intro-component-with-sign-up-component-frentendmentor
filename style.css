@@ -1,0 +1,241 @@
+html {
+    font-family: 'Space Mono', monospace;
+    font-size: 24px;
+    background-color: hsl(185, 41%, 84%);
+}
+
+header {
+    margin: auto;
+    padding: 4rem 0 2rem 0;
+    text-align: center;
+}
+
+.container {
+    background-color: hsl(0, 0%, 100%);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto;
+    padding: 1.5rem;
+    width: 80%;
+    max-width: 720px;
+    height: fit-content;
+    border: none;
+    border-radius: 25px;
+}
+
+.container-left {
+    height: 100%;
+    width: 48%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1rem;
+}
+.container-right {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: hsl(183, 100%, 15%);
+    padding: 1rem;
+    border-radius: 15px;
+    gap: 5rem;
+}
+
+.form h1,
+.tip-text h2,
+.total-text h2 
+{
+    font-size: 14px;
+    font-weight: 700;
+    padding: 0.5rem 0;
+    color: hsl(186, 14%, 43%);
+}
+
+.tip-text p,
+.total-text p {
+    font-size: 14px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.input-entry {
+    width: 100%;
+    height: 2rem;
+    margin: 0;
+    background-color: hsl(189, 41%, 97%);
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.input-label {
+    position: relative;
+}
+
+.input-entry::placeholder {
+    text-align: end;
+    font-family: 'Space Mono', monospace;
+    font-size: 1rem;
+    color: hsl(184, 14%, 56%);
+    outline: none;
+}
+
+.input-entry:focus,
+.input-entry:valid {
+    text-align: end;
+    font-family: 'Space Mono', monospace;
+    font-size: 1rem;
+    color: hsl(183, 100%, 15%);
+    font-weight: 700;
+    width: calc(100% - 1rem);
+    padding-right: 1rem;
+}
+
+.input-entry:focus {
+    outline: 2px solid hsl(172, 67%, 45%);
+}
+
+.input-entry + span {
+    position: absolute;
+    top: 0.5rem;
+    left: 0.5rem;
+}
+
+.tip-inputs {
+    display: grid;
+    grid-template-columns: 30% 30% 30%;
+    grid-template-rows: 1.8rem 1.8rem;
+    gap: 0.5rem;
+    justify-content: center;
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+    width: 100%;
+}
+
+.input-tip:hover {
+    cursor: pointer;
+    background-color: hsl(185, 41%, 84%);
+    color: black;
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+}
+
+.input-tip {
+    background-color: hsl(183, 100%, 15%);
+    color: hsl(0, 0%, 100%);
+    font-family: 'Space Mono', monospace;
+    font-size: 20px;
+    border-radius: 5px;
+    border: none;
+    text-align: center;
+}
+
+.input-tip:focus {
+    background-color: hsl(172, 67%, 45%);
+    color: hsl(183, 100%, 15%);
+    font-weight: 700;
+}
+
+#input-custom {
+    background-color: hsl(189, 41%, 97%);
+    color: hsl(183, 100%, 15%);
+    font-weight: 700;
+}
+
+#input-custom:focus {
+    outline: 2px solid hsl(172, 67%, 45%);
+}
+
+.errorMessage {
+    color: rgb(232, 11, 11);
+    font-size: 14px;
+    position: absolute;
+    top: -25px;
+    right: 0;
+    visibility: hidden;
+}
+
+.results {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 40%;
+    padding-top: 0.8rem;
+    gap: 1rem;
+}
+
+.tip-amount, .total-pay {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.results-title {
+    font-size: 14px;
+    color: #fff;
+}
+
+.results-subtitle {
+    color: hsl(184, 14%, 56%);
+    font-weight: 700;
+}
+
+.tip-result, .total-result {
+    color: hsl(172, 67%, 45%);
+    font-size: 38px;
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+}
+
+button {
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+    height: 1.8rem;
+    font-size: 16px;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 5px;
+    background-color: hsl(186, 14%, 43%);
+    color: hsl(183, 100%, 15%);
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: hsl(185, 41%, 84%);
+    
+}
+
+button:focus {
+    outline: none;
+    background-color: hsl(172, 67%, 45%);
+}
+
+@media screen and (max-width: 800px) {
+    .container-right {
+        gap: 6rem;
+    }
+
+    .tip-inputs {
+        grid-template-columns: 45% 45%;
+        grid-template-rows: 1.8rem 1.8rem 1.8rem;
+        justify-content: space-around;
+    }
+}
+
+@media screen and (max-width: 520px) {
+    .container {
+        flex-wrap: wrap;
+        height: fit-content;
+        gap: 2rem;
+    }
+
+    .container-left, .container-right {
+        width: 100%;
+    }
+}
